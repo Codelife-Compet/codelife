@@ -1,13 +1,29 @@
-import React, {Component} from "react";
+import { FaInstagram } from "react-icons/fa";
+import styles from "./InstagramIcon.css";
 
-class InstagramIcon extends Component {
-  render() {
-    return (
-      <svg className="social-svg" viewBox="0 0 800 800" fill="#E4405F">
-        <path d="M150 400c0-119 0-166 42-208s88-42 208-42 166 0 208 42 42 89 42 208 0 166-42 208-88 42-208 42-166 0-208-42-42-89-42-208zm455 0c0-114 0-148-29-176-29-29-62-29-176-29s-148 0-176 29c-29 29-29 62-29 176s0 148 29 176c29 29 62 29 176 29s148 0 176-29c29-29 29-62 29-176zM400 272a128 128 0 1 1 0 256 128 128 0 0 1 0-256zm0 211c46 0 83-37 83-83s-37-83-83-83-83 37-83 83 37 83 83 83zm163-216c0 16-13 30-30 30-16 0-30-14-30-30 0-17 14-30 30-30 17 0 30 13 30 30z"/>
-      </svg>
-    );
-  }
+
+function InstagramIcon({ size = 24, id }) {
+  return (
+    <div className={styles["instagram-icon-container"]}>
+      <div className={styles["instagram-icon"]}>
+        <svg width={size} height={size} className={styles["instagram-icon"]}>
+          <defs>
+            <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#596161" />
+              <stop offset="100%" stopColor="#596161" />
+            </linearGradient>
+            <linearGradient id="instagram-gradient-hover" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#8B5CF6" />
+              <stop offset="50%" stopColor="#EC4899" />
+              <stop offset="100%" stopColor="#F43F5E" />
+            </linearGradient>
+          </defs>
+          <FaInstagram className={`${styles["instagram-gradient"]} `} fontSize={size} />
+        </svg>
+        {id && <span className="hidden px-2 sm:block "> {id}</span>}
+      </div>
+    </div>
+  );
 }
 
 export default InstagramIcon;
