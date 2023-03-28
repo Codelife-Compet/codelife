@@ -1,21 +1,20 @@
-@import "../mixins.css";
-.compet-logo{
-  display: flex;
-  align-items: center;
+.footer {
+  bottom: 0;
+  margin-top: auto;
+  width: 100%;
+  background-color: #2f3a3a;
 }
-.compet-text{
-  padding:0 .8em;
-}
-/* repeating image */
+
 .footer:before {
   content: '';
-  display: block;
+  display: flex;
   /* sizing */
   width: 100%;
-  height: 50px;
+  height: 60px;
   /* positioning */
-  position: absolute;
-  top: -50px; /* position bg image above .footer background */
+  position: relative;
+  top: -50px;
+  /* position bg image above .footer background */
   /* background sizing and default image */
   background-image: url("/ground.png");
   background-size: contain;
@@ -23,254 +22,195 @@
   background-repeat: repeat-x;
 }
 
-/* default colors */
-.footer {
-  margin-top: 120px; /* offset image */
-  background: var(--black);
+.inner-footer {
+  display: flex;
+  padding: 0 2rem 3rem;
+  flex-direction: column;
+  justify-content: space-between;
 
-  & * {
-    color: var(--light-2);
+}
+
+@media (min-width: 640px) {
+  .inner-footer {
+      flex-direction: row;
   }
 }
 
-/* container */
-.footer-inner {
-  padding: var(--gutter-md);
 
-  /* space out content on bigger screens */
-  @add-mixin min-sm {
-    padding: var(--gutter-lg) var(--gutter-lg) var(--gutter-md) var(--gutter-lg);
-  }
 
-  /* tweakpoint to align links left, credits right on big screens */
-  @media (min-width: 1240px) {
-    display: flex;
-    justify-content: space-between;
-  }
+.nav-links-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-  /* align links and credits */
-  & > * {
-    display: inline-block;
-    vertical-align: top;
+
+
+}
+
+@media (min-width: 768px) {
+  .nav-links-footer {
+      gap: 1rem;
   }
 }
 
-/* lists of links */
-.footer-list {
-  @add-mixin list-reset;
-  margin-top: -0.25rem; /* fudge into place */
+@media (min-width: 1024px) {
+  .nav-links-footer {
 
-  /* full width links on mobile */
-  @add-mixin max-xs {
-    width: 100%;
-
-    & .footer-item + .footer-item {
-      border-top: 1px solid var(--dark-3);
-    }
-
-    & .footer-link {
-      display: block;
-      width: 100%;
-    }
-  }
-
-  /* links (nested within list items) */
-  & .footer-link {
-    @add-mixin nav-link;
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
-    /* override nav-link mixin */
-    color: var(--sky);
-    opacity: 0.75;
-    /* transitions */
-    transition: opacity 0.2s ease-out;
-
-    @add-mixin min-xs {
-      padding-top: 0.25em;
-      padding-bottom: 0.25em;
-    }
-
-    /* interactions */
-    &:hover, &:focus {
-      color: var(--sky);
-      opacity: 1;
-      text-decoration: underline;
-    }
+      gap: 2rem;
   }
 }
 
-/* list of lists */
-.footer-nav {
-  display: block;
-
-  /* let flex take over once that makes sense */
-  @add-mixin min-sm {
-    display: flex;
-    justify-content: center;
-  }
-
-  & .footer-list-container {
-    /* positioning */
-    display: inline-block; /* parent flexbox fallback */
-    vertical-align: top; /* thanks blueprint */
-    margin-bottom: var(--gutter-md);
-    /* sizing */
-    width: 100%;
-    max-width: 100%;
-
-    /* sizing and margin for bigger screens */
-    @add-mixin min-xs {
-      width: 11.5rem; /* 184px */
-      margin-right: var(--gutter-md); /* 40px */
-
-      /* reset margin on last item */
-      &:last-of-type {
-        margin-right: 0;
-      }
-    }
+@media (min-width: 640px) {
+  .nav-links-footer {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* credits */
-.footer-credits-container {
-  display: inline-block;
-  text-align: center;
-  width: 100%;
+.nav-footer-section {
+  margin-top: 0.5rem;
+}
 
-  /* right align on big viewports */
-  @media (min-width: 1240px) {
-    text-align: right;
-    width: auto;
+.nav-footer-section h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: rgb(221 223 223/0.9)
+}
+
+.nav-footer-section ul {
+  padding-top: 0.5rem;
+}
+
+.nav-footer-section li {
+  color: #3bd9cc;
+  font-weight: 500;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  opacity: 0.8;
+  border-bottom-width: 1px;
+  border-color: #596161;
+}
+
+@media (min-width: 640px) {
+  .nav-footer-section li {
+      border-bottom-width: 0;
   }
+}
 
-  /* datawheel logo */
-  & .footer-logo-link {
-    height: var(--gutter-md);
-    /* increase clickable area */
-    padding-top: var(--gutter-md);
-    padding-bottom: var(--gutter-md);
+.nav-footer-section li:hover {
+  opacity: 1;
+  text-decoration: none;
+}
 
-    /* offset height when side by side */
-    @add-mixin min-sm {
-      top: -10px; /* fudge into place */
-    }
+.footer-partners-section {
+  display: flex;
+  padding-top: 1rem;
+  justify-content: space-around;
+}
 
-    /* vertically center built by datawheel */
-    & > * {
-      display: inline-block;
-      vertical-align: middle;
-    }
+.footer-partners-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
 
-    /* space out "built by" and logo */
-    & > .footer-logo-text {
-      margin-right: 0.25em;
-    }
 
-    /* logo sizing */
-    & > .footer-logo-img {
-      height: var(--gutter-lg);
-      /* transitons */
-      opacity: 0.75;
-      transition: 0.2s opacity;
-    }
+}
 
-    /* interactions */
-    &:hover, &:focus {
-      /* remove underline from "built by" */
-      text-decoration: none;
-
-      /* reset opacity on logo */
-      & > .footer-logo-img {
-        opacity: 1;
-      }
-    }
+@media (min-width: 640px) {
+  .footer-partners-container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
 
-  /* social links container */
-  & .footer-social-list {
-    margin-bottom: var(--gutter-md);
-    margin-top: 0.5rem;
+.footer-partners-datawheel {
+  display: flex;
+  padding-right: 1rem;
+  justify-content: space-around;
+  align-items: center;
+  border-right-width: 1px;
+  border-color: #596161;
 
-    /* adjustment on side by side footer layout */
-    @add-mixin min-lg {
-      margin-top: 0; /* reset */
-      /* account for built in svg padding */
-      right: -0.25rem;
-      top: -0.25rem;
-    }
+
+}
+
+@media (min-width: 640px) {
+  .footer-partners-datawheel {
+      grid-column: span 1 / span 1;
   }
+}
 
-  /* social link list item layout */
-  & .footer-social-item {
-    display: inline-block;
-    vertical-align: middle;
+.footer-partners-datawheel span {
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  color: #d2d5d5;
 
-    & + .footer-social-item {
-      margin-left: var(--gutter-xs);
-    }
+}
+
+
+.footer-partners-helpfull-container {
+  display: grid;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 0.25rem;
+
+}
+
+@media (min-width: 640px) {
+  .footer-partners-helpfull-container {
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column-start: 2;
+      grid-column-end: 4;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
   }
+}
 
-  /* social link interactions */
-  & .footer-social-link {
+.footer-partners-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* svg sizing */
-    & .social-svg {
-      /* sizing */
-      height: 3rem;
-      /* theming */
-      fill: var(--dark-1);
-      /* transitions */
-      transition: fill 0.2s ease;
-    }
+.footer-partners-item a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
 
-    /* offset built-in svg padding */
-    &.youtube-footer-social-link .social-svg {
-      transform: scale(1.325); /* fudge youtube size */
-    }
+.footer-partners-item a:hover {
+  opacity: 1;
+}
 
-    /* adjust icon fill on hover */
-    &:hover, &:focus {
-      &.facebook-footer-social-link .social-svg  { fill: #3B5998; }
-      &.twitter-footer-social-link .social-svg   { fill: #00ACED; }
-      &.instagram-footer-social-link .social-svg { fill: #E4405F; }
-      &.youtube-footer-social-link .social-svg   { fill: #FF0000; }
-    }
-  }
+.footer-partners-small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 100;
+  color: #d2d5d5;
+}
 
+.footer-partners-compet-text {
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.25rem;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  color: #d2d5d5;
 
+}
 
-  /* credits */
-  & .footer-credits {
-    /* keep logos reasonably sized and centered if need on small screens */
-    width: 24rem;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+.footer-partners-compet-logo {
+  min-width: 2.5rem;
+  grid-column: span 1 / span 1;
+  width: fit-content;
+}
 
-    /* line up partner logos */
-    & .footer-credits-link {
-      display: inline-block;
-      width: 30%;
-      vertical-align: middle;
-      margin-top: 0.25em;
-      opacity: 0.75;
-      /* transitions */
-      transition: opacity 0.2s ease-out;
-
-      /* space out horizontally */
-      &:not(:last-of-type) {
-        margin-right: 4.999%;
-      }
-
-      /* make innpact logo smaller */
-      &:last-of-type {
-        width: 26%;
-      }
-
-      /* interactions */
-      &:hover, &:focus {
-        opacity: 1;
-      }
-    }
-  }
+.socials-container {
+  border-top-width: 1px;
+  border-color: #d2d5d5;
+  padding-bottom: 1rem;
 }

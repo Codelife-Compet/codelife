@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import { connect } from "react-redux";
-import "./Footer.css";
-
+import styles from "./Footer.css";
+import Socials from "./socials/Socials";
 import FacebookIcon from "./FacebookIcon.svg.jsx";
 import InstagramIcon from "./InstagramIcon.svg.jsx";
 import YoutubeIcon from "./YoutubeIcon.svg.jsx";
@@ -107,15 +107,15 @@ class Footer extends Component {
 
     // loop through arrays and create corresponding list items
     const aboutLinkItems = aboutLinks.map(aboutLink =>
-      <li className="footer-item" key={aboutLink.id}>
-        <Link className="footer-link font-sm" to={aboutLink.link}>
+      <li key={aboutLink.id}>
+        <Link to={aboutLink.link}>
           {t(aboutLink.title)}
         </Link>
       </li>
     );
     const exploreLinkItems = exploreLinks.map(exploreLink =>
-      <li className="footer-item" key={exploreLink.id}>
-        <Link className="footer-link font-sm" to={exploreLink.link}>
+      <li key={exploreLink.id}>
+        <Link to={exploreLink.link}>
           {t(exploreLink.title)}
         </Link>
       </li>
@@ -138,8 +138,8 @@ class Footer extends Component {
     );
     // locale subdomain links must be standard links, not Link components
     const languageLinkItems = languageLinks.map(languageLink =>
-      <li className="footer-item" key={languageLink.id}>
-        <a className="footer-link font-sm" href={languageLink.link}>
+      <li key={languageLink.id}>
+        <a href={languageLink.link}>
           {t(languageLink.title)}
         </a>
       </li>
@@ -161,109 +161,88 @@ class Footer extends Component {
     );
 
     return (
-      <footer id="footer" className={`footer ${className}`}>
+      <footer id="footer" className={styles.footer}>
         {/* :before element used for background image */}
 
-        <div className="footer-inner">
+        <div className={styles["inner-footer"]}>
           {/* hidden heading (for accessibility) */}
           <h2 className="u-visually-hidden">{t("Navigation")}</h2>
 
           {/* list of links */}
-          <nav className="footer-nav" role="navigation">
+          <nav role={"navigation"} className={styles["nav-links-footer"]}>
             {/* about links */}
-            <div className="footer-list-container">
-              <h3 className="footer-heading">{t("About ")}</h3>{" "}
+            <div className={styles["nav-footer-section"]}>
+              <h3 >{t("About ")}</h3>{" "}
               {/* space afterward is intentional, as full About Codelife link follows */}
-              <ul className="footer-list">{aboutLinkItems}</ul>
+              <ul>{aboutLinkItems}</ul>
             </div>
 
             {/* explore links */}
-            <div className="footer-list-container">
-              <h3 className="footer-heading">{t("Explore")}</h3>
-              <ul className="footer-list">{exploreLinkItems}</ul>
+            <div className={styles["nav-footer-section"]}>
+              <h3>{t("Explore")}</h3>
+              <ul>{exploreLinkItems}</ul>
             </div>
 
             {/* account links */}
             {user
-              ? <div className="footer-list-container">
-                <h3 className="footer-heading">{t("Account")}</h3>
-                <ul className="footer-list">{accountLinkItems}</ul>
+              ? <div className={styles["nav-footer-section"]}>
+                <h3>{t("Account")}</h3>
+                <ul>{accountLinkItems}</ul>
               </div>
               : null}
 
             {/* language select */}
-            <div className="footer-list-container">
-              <h3 className="footer-heading">{t("Language")}</h3>
-              <ul className="footer-list">{languageLinkItems}</ul>
+            <div className={styles["nav-footer-section"]}>
+              <h3>{t("Language")}</h3>
+              <ul>{languageLinkItems}</ul>
             </div>
           </nav>
 
-          <div className="footer-credits-container" role="contentinfo">
-            {/* social links */}
-            <ul className="footer-social-list u-list-reset">
-              {socialLinkItems}
-            </ul>
-
-            {/* datawheel logo */}
-            <a
-              className="footer-logo-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="http://www.datawheel.us/"
-            >
-              <span className="footer-logo-text font-sm">{t("Built by ")}</span>
-              <img
-                className="footer-logo-img"
-                src="/footer/logo-datawheel.svg"
-                alt="Datawheel"
-              />
-            </a>
-            <a
-              className="footer-logo-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://compet.vercel.app">
-
-              <div className="footer-logo-img">
-                <div className="compet-logo">
-                  <span className="compet-text"> &amp; </span>
-                  <CompetIcon />
-                  <span className="compet-text">Compet Cefet-MG</span></div>
+          <div className={styles["footer-partners-section"]}>
+            <div className={styles["footer-partners-container"]}>
+              <div className={styles["footer-partners-datawheel"]}>
+                <a href={"https://www.datawheel.us/"} target="_blank">
+                  <span>
+                    {t("Built by ")}
+                  </span>
+                  <img src="/footer/datawheel.svg" alt="Logotipo da Datawheel" width={160} height={160} />
+                </a>
               </div>
-            </a>
-            {/* additional links */}
-            <div className="footer-credits">
-              {/* <p className="font-xs">Fundação de Amparo à Pesquisa do Estado de Minas Gerais</p> */}
-              <p className="font-xs">Governo do Estado de Minas Gerais</p>
-              <a
-                className="footer-credits-link"
-                href="http://www.fapemig.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="footer-credits-logo"
-                  src="/footer/logo-fapemig.svg"
-                  alt="Fundação de Amparo à Pesquisa de Minas Gerais"
-                />
-              </a>
-              {/* <a className="footer-credits-link" href="http://mg.gov.br" target="_blank" rel="noopener noreferrer">
-                <img className="footer-credits-logo" src="/footer/logo-mg.svg" alt="Estado de Minas Gerais" />
-              </a> */}
-              <a
-                className="footer-credits-link"
-                href="https://www.linkedin.com/company/innpact-ventures"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="footer-credits-logo"
-                  src="/footer/logo-innpact.svg"
-                  alt="Innpact Ventures"
-                />
-              </a>
+              <div className={styles["footer-partners-helpfull-container"]}>
+                <div className={styles["footer-partners-item"]}>
+                  <span className={styles["footer-partners-small"]}>Governo do Estado de Minas Gerais</span>
+                </div>
+                <div className={styles["footer-partners-item"]}>
+                  <a href="http://www.fapemig.br/" target="_blank" rel="noopener noreferrer">
+                    <img src="/footer/fapemig.svg" alt="Logotipo da Fapemig" height={160} width={160} />
+                  </a>
+                </div>
+                <div className={styles["footer-partners-item"]}>
+                  <a href={"http://www.fapemig.br/"} target="_blank" rel="noopener noreferrer" >
+                    <img src="/footer/innpact.svg" alt="Logotipo da Innpact" height={160} width={160} />
+                  </a>
+                </div>
+                <div className={styles["footer-partners-item"]}>
+                  <a href="https://compet.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    <CompetIcon className={styles["footer-partners-compet-logo"]} />
+                    <span className={styles["footer-partners-compet-text"]}>Compet | CEFET - MG</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div className={styles["socials-container"]}
+        >
+          <Socials
+            size="sm"
+            facebook={socialLinks.find(link => link.title.toLocaleLowerCase() === "facebook")}
+            instagram={socialLinks.find(link => link.title.toLocaleLowerCase() === "instagram")}
+            youtube={socialLinks.find(link => link.title.toLocaleLowerCase() === "youtube")}
+            twitter={socialLinks.find(link => link.title.toLocaleLowerCase() === "twitter")}
+            github={socialLinks.find(link => link.title.toLocaleLowerCase() === "github")}
+            linkedin={socialLinks.find(link => link.title.toLocaleLowerCase() === "linkedin")}
+          />
         </div>
       </footer>
     );

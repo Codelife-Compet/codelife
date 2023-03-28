@@ -1,0 +1,55 @@
+.instagram-icon-container {
+    display: inline-block;
+
+}
+
+.instagram {
+    color: #596161;
+    fill: #596161;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.instagram-icon {
+    display: flex;
+    color: #596161;
+    align-items: center;
+    font-size: 1.25rem;
+    /* Equivalente a text-xl em Tailwind */
+    background-image: linear-gradient(to right, #8B5CF6, #EC4899, #F43F5E);
+    -webkit-background-clip: text;
+    /* Equivalente a bg-clip-text em Tailwind */
+    background-clip: text;
+    /* Equivalente a bg-clip-text em Tailwind */
+    text-shadow: none;
+}
+
+.instagram-icon span {
+    display: none;
+    padding-left: 0.5rem
+        /* 8px */
+    ;
+    padding-right: 0.5rem
+        /* 8px */
+    ;
+}
+
+@media (min-width:640px) {
+    .instagram-icon span {
+        display: block;
+    }
+}
+
+.instagram-icon:hover {
+    color: transparent;
+}
+
+.instagram-gradient {
+    fill: url(#instagram-gradient);
+}
+
+.instagram-icon:hover .instagram {
+    fill: url(#instagram-gradient-hover);
+}
