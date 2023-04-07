@@ -28,7 +28,7 @@
   "homepage": "https://github.com/Datawheel/codelife#readme",
   "dependencies": {
     "@blueprintjs/datetime": "^1.19.0",
-    "@blueprintjs/labs": "^0.11.0",
+    "@blueprintjs/labs": "^0.16.3",
     "@datawheel/canon-core": "^0.16.15",
     "cpf_cnpj": "^0.2.0",
     "css": "git+https://github.com/Datawheel/css.git",
